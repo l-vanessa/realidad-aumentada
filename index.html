@@ -19,6 +19,7 @@
                       position="0 0 0"
                       scale="0.5 0.5 0.5"
                       rotation="0 0 0"
+                      id="hamster-model-obj"
                       animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
         </a-gltf-model>
 
@@ -35,5 +36,27 @@
       <a-entity camera></a-entity>
 
     </a-scene>
+
+    <script>
+      const hamsterModel = document.getElementById('hamster-model-obj');
+      let isPurple = false;
+
+      hamsterModel.addEventListener('click', function() {
+        isPurple = !isPurple;
+        
+        const model = hamsterModel.getObject3D('mesh');
+        if (model) {
+          model.traverse(function(node) {
+            if (node.isMesh) {
+              if (isPurple) {
+                node.material.color.setHex(0xA020F0); // Morado
+              } else {
+                node.material.color.setHex(0xFFFFFF); // Blanco (original)
+              }
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

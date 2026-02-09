@@ -20,8 +20,16 @@
                       scale="0.5 0.5 0.5"
                       rotation="0 0 0"
                       id="hamster-model-obj"
-                      animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+                      animation="property: rotation; to: 0 360 0; loop: true; dur: 6000"
+                      cursor="rayOrigin: mouse">
         </a-gltf-model>
+
+        <a-box position="0 0 0" 
+               scale="0.6 0.8 0.6" 
+               material="opacity: 0; wireframe: false"
+               id="hamster-click-area"
+               class="clickable">
+        </a-box>
 
         <a-text value="Cute Hamster"
                 position="0 1.5 0"
@@ -39,19 +47,23 @@
 
     <script>
       const hamsterModel = document.getElementById('hamster-model-obj');
+      const clickArea = document.getElementById('hamster-click-area');
       let isPurple = false;
 
-      hamsterModel.addEventListener('click', function() {
+      clickArea.addEventListener('click', function() {
+        console.log('Click detectado!');
         isPurple = !isPurple;
         
-        const model = hamsterModel.getObject3D('mesh');
-        if (model) {
-          model.traverse(function(node) {
-            if (node.isMesh) {
+        // Obtener el objeto 3D del modelo
+        const object3D = hamsterModel.object3D;
+        
+        if (object3D) {
+          object3D.traverse(function(child) {
+            if (child.material) {
               if (isPurple) {
-                node.material.color.setHex(0xA020F0); // Morado
+                child.material.color.setHex(0xA020F0); // Morado
               } else {
-                node.material.color.setHex(0xFFFFFF); // Blanco (original)
+                child.material.color.setHex(0xFFFFFF); // Blanco
               }
             }
           });

@@ -771,16 +771,16 @@
   ],
   "images": [
     {
-      "uri": "textures/body_baseColor.png"
+      "uri": "textures_lunacea/body_baseColor.png"
     },
     {
-      "uri": "textures/hair_baseColor.png"
+      "uri": "textures_lunacea/hair_baseColor.png"
     },
     {
-      "uri": "textures/item_baseColor.png"
+      "uri": "textures_lunacea/item_baseColor.png"
     },
     {
-      "uri": "textures/costume_baseColor.png"
+      "uri": "textures_lunacea/costume_baseColor.png"
     }
   ],
   "materials": [
